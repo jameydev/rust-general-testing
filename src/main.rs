@@ -1,3 +1,5 @@
+extern crate core;
+
 use std::collections::HashMap;
 use garden::vegetables::Asparagus;
 
@@ -5,10 +7,12 @@ pub mod garden;
 pub mod stuff;
 pub mod user;
 pub mod rectangle;
+mod median;
 
 pub use rectangle::Rectangle;
 pub use stuff::*;
 pub use user::User;
+pub use median::mode_tester;
 
 fn main() {
     stringy_thingy();
@@ -37,6 +41,8 @@ fn main() {
 
     mapped_hashes_hash_mapping();
     println!();
+
+    mode_tester();
 }
 
 fn stringy_thingy() {
