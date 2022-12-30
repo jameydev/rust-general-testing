@@ -93,6 +93,15 @@ fn main() {
 
     let x = 32;
     println!("x = {:?}\n", plus_one(Some(x)));
+    
+    let coin = Coin::Quarter(UsState::Alabama);
+    let mut count = 0;
+    if let Coin::Quarter(state) = coin {
+        println!("State quarter from {:?}.\n", state)
+    }
+    else {
+        count += 1;
+    }
 
 }
 
