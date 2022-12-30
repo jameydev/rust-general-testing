@@ -1,3 +1,7 @@
+use garden::vegetables::Asparagus;
+
+pub mod garden;
+
 mod rectangle;
 mod stuff;
 mod user;
@@ -102,6 +106,9 @@ fn main() {
     else {
         count += 1;
     }
+
+    let plant = Asparagus {};
+    println!("I'm growing {:?}!\n", plant);
 
 }
 
