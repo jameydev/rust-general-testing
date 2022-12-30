@@ -1,10 +1,9 @@
 use garden::vegetables::Asparagus;
 
 pub mod garden;
-
-mod rectangle;
-mod stuff;
-mod user;
+pub mod stuff;
+pub mod user;
+pub mod rectangle;
 
 pub use rectangle::Rectangle;
 pub use stuff::*;
@@ -31,6 +30,8 @@ fn main() {
 
     garden_thing();
     println!();
+
+    vector_thingy();
 }
 
 fn stringy_thingy() {
@@ -109,6 +110,24 @@ fn one_more_thing() {
 fn garden_thing() {
     let plant = Asparagus {};
     println!("I'm growing {:?}!\n", plant);
+}
+
+fn vector_thingy() {
+    // let v: Vec<i32> = Vec::new();
+    let mut v = vec![1, 2, 3];
+
+    for i in 6..10 {
+        v.push(i);
+    }
+
+    let third = &v[2];
+    println!("The third element is {third}");
+
+    let third: Option<&i32> = v.get(2);
+    match third {
+        Some(third) => println!("The third element is {third}"),
+        None => println!("There is no third element.")
+    }
 }
 // lame way
 // fn area(width: u32, height: u32) -> u32 {
