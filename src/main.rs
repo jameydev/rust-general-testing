@@ -120,8 +120,12 @@ fn vector_thingy() {
         v.push(i);
     }
 
+    for j in &v {
+        print!("{j} ");
+    }
+
     let third = &v[2];
-    println!("The third element is {third}");
+    println!("\nThe third element is {third}");
 
     let third: Option<&i32> = v.get(2);
     match third {
