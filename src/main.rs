@@ -86,10 +86,13 @@ fn main() {
     let loopback = IpAddress::IPv6(String::from("::1"));
     
     println!();
-    let aQuarter = Coin::Quarter(UsState::Texas);
-    let qtrValue = value_in_cents(aQuarter);
+    let quarter = Coin::Quarter(UsState::Texas);
+    let qtr_value = value_in_cents(quarter);
 
-    println!("Quarters are worth {} cents", qtrValue);
+    println!("Quarters are worth {} cents\n", qtr_value);
+
+    let x = 32;
+    println!("x = {:?}\n", plus_one(Some(x)));
 
 }
 
