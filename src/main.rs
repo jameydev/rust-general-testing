@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use garden::vegetables::Asparagus;
 
 pub mod garden;
@@ -32,6 +33,10 @@ fn main() {
     println!();
 
     vector_thingy();
+    println!();
+
+    mapped_hashes_hash_mapping();
+    println!();
 }
 
 fn stringy_thingy() {
@@ -132,6 +137,31 @@ fn vector_thingy() {
         Some(third) => println!("The third element is {third}"),
         None => println!("There is no third element.")
     }
+}
+
+fn mapped_hashes_hash_mapping() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Red"), 50);
+
+    println!("Scores for the Hackinator PenTesting Tournament:");
+    for (key, value) in &scores {
+        println!("{key} Team: {value} points");
+    }
+
+    let txt = "hello my darkness, hello my honey, hello my oldtime friend";
+    let mut map = HashMap::new();
+
+    for word in txt.split_whitespace() {
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+
+    println!("{:?}", map);
+
+    // let team_name = String::from("Blue");
+    // let score = scores.get(&team_name).copied().unwrap_or(0);
 }
 // lame way
 // fn area(width: u32, height: u32) -> u32 {
