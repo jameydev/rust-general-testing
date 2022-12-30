@@ -84,6 +84,12 @@ fn main() {
     
     let home = IpAddress::IPv4(127, 0, 0, 1);
     let loopback = IpAddress::IPv6(String::from("::1"));
+    
+    println!();
+    let aQuarter = Coin::Quarter(UsState::Texas);
+    let qtrValue = value_in_cents(aQuarter);
+
+    println!("Quarters are worth {} cents", qtrValue);
 
 }
 
