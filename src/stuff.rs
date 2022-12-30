@@ -31,19 +31,76 @@ pub enum Message {
 //     println!("BLAST OFF!");
 // }
 
-enum Coin {
+#[derive(Debug)]
+pub enum UsState {
+    Alabama,
+    Alaska,
+    Arizona,
+    Arkansas,
+    California,
+    Colorado,
+    Connecticut,
+    Delaware,
+    Florida,
+    Georgia,
+    Hawaii,
+    Idaho,
+    Illinois,
+    Indiana,
+    Iowa,
+    Kansas,
+    Kentucky,
+    Lousiana,
+    Maine,
+    Maryland,
+    Massachusetts,
+    Michigan,
+    Minnesota,
+    Mississippi,
+    Missouri,
+    Montana,
+    Nebraska,
+    Nevada,
+    NewHampshire,
+    NewJersey,
+    NewMexico,
+    NewYork,
+    NorthCarolina,
+    NorthDakota,
+    Ohio,
+    Oklahoma,
+    Oregon,
+    Pennsylvania,
+    RhodeIsland,
+    SouthCarolina,
+    SouthDakota,
+    Texas,
+    Utah,
+    Vermont,
+    Virginia,
+    Washington,
+    WestVirginia,
+    Wisconsin,
+    Wyoming
+
+}
+
+pub enum Coin {
     Penny,
     Nickel,
     Dime,
-    Quarter
+    Quarter(UsState)
 }
 
-fn value_in_cents(coin: Coin) -> u8 {
+pub fn value_in_cents(coin: Coin) -> u8 {
     match coin {
         Coin::Penny => 1,
         Coin::Nickel => 2,
         Coin::Dime => 10,
-        Coin::Quarter => 25
+        Coin::Quarter(state) => {
+            println!("State quarter from {:?}", state);
+            25
+        }
     }
 }
 
