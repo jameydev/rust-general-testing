@@ -8,11 +8,13 @@ pub mod stuff;
 pub mod user;
 pub mod rectangle;
 mod median;
+mod fizzbuzz;
 
+pub use fizzbuzz::*;
 pub use rectangle::Rectangle;
 pub use stuff::*;
 pub use user::User;
-pub use median::mode_tester;
+pub use median::*;
 
 fn main() {
     stringy_thingy();
@@ -42,7 +44,14 @@ fn main() {
     mapped_hashes_hash_mapping();
     println!();
 
+    // Lol, this doesn't work
+    // median_tester();
+    // println!();
     mode_tester();
+    println!();
+
+    fizz_buzz(100);
+    println!();
 }
 
 fn stringy_thingy() {
