@@ -1,7 +1,14 @@
 extern crate core;
 
 use std::collections::HashMap;
+
+pub use fizzbuzz::*;
 use garden::vegetables::Asparagus;
+pub use median::*;
+pub use rectangle::Rectangle;
+pub use stuff::*;
+pub use user::User;
+pub use error_thing::*;
 
 pub mod garden;
 pub mod stuff;
@@ -9,12 +16,7 @@ pub mod user;
 pub mod rectangle;
 mod median;
 mod fizzbuzz;
-
-pub use fizzbuzz::*;
-pub use rectangle::Rectangle;
-pub use stuff::*;
-pub use user::User;
-pub use median::*;
+mod error_thing;
 
 fn main() {
     stringy_thingy();
@@ -52,6 +54,8 @@ fn main() {
 
     fizz_buzz(100);
     println!();
+
+    get_file();
 }
 
 // lame way
