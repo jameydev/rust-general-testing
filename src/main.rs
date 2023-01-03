@@ -19,7 +19,7 @@ mod fizzbuzz;
 mod error_thing;
 mod generical;
 
-fn main() {
+fn old_crapp() {
     stringy_thingy();
     println!();
 
@@ -58,9 +58,16 @@ fn main() {
 
     get_file();
     println!();
+}
 
+fn current_bs() {
     let money = last_char_of_first_ln("show me that money, fam");
     println!("The money is: {}", money.unwrap());
+}
+
+fn main() {
+    old_crapp();
+    current_bs();
 }
 
 // lame way
