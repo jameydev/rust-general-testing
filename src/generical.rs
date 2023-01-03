@@ -8,38 +8,47 @@
 //     largest
 // }
 
-struct Point<T, U> {
+pub struct Point<T, U> {
     x: T,
     y: U
 }
 
 impl<T, U> Point<T, U> {
-    fn x(&self) -> &T {
+    pub fn x(&self) -> &T {
         &self.x
     }
 
-    fn y(&self) -> &U {
+    pub fn y(&self) -> &U {
         &self.y
     }
 }
 
-struct _Point<T> {
+pub struct _Point<T> {
     x: T,
     y: T
 }
 
 impl<T> _Point<T> {
-    fn x(&self) -> &T {
+    pub fn x(&self) -> &T {
         &self.x
     }
 
-    fn y(&self) -> &T {
+    pub fn y(&self) -> &T {
         &self.y
     }
 }
 
 impl _Point<f32> {
-    fn distance(&self) -> f32 {
+    pub fn distance(&self) -> f32 {
         (self.x.powi(2) + self.y.powi(2)).sqrt()
     }
+}
+
+pub fn get_to_the_point() {
+    let integer = Point { x: 5, y: 10 };
+    let float = _Point { x: 1.2, y: 1.3 };
+    println!("integer x = {}", integer.x());
+    println!("integer y = {}", integer.y());
+    println!("float x = {}", float.x());
+    println!("float y = {}", float.y());
 }

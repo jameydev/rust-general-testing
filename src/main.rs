@@ -9,6 +9,7 @@ use median::*;
 use rectangle::Rectangle;
 use stuff::*;
 use user::User;
+use crate::generical::get_to_the_point;
 
 mod garden;
 mod stuff;
@@ -63,6 +64,9 @@ fn old_crapp() {
 fn current_bs() {
     let money = last_char_of_first_ln("show me that money, fam");
     println!("The money is: {}", money.unwrap());
+
+    println!();
+    get_to_the_point();
 }
 
 fn main() {
