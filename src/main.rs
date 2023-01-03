@@ -2,18 +2,18 @@ extern crate core;
 
 use std::collections::HashMap;
 
-pub use fizzbuzz::*;
+use error_thing::*;
+use fizzbuzz::*;
 use garden::vegetables::Asparagus;
-pub use median::*;
-pub use rectangle::Rectangle;
-pub use stuff::*;
-pub use user::User;
-pub use error_thing::*;
+use median::*;
+use rectangle::Rectangle;
+use stuff::*;
+use user::User;
 
-pub mod garden;
-pub mod stuff;
-pub mod user;
-pub mod rectangle;
+mod garden;
+mod stuff;
+mod user;
+mod rectangle;
 mod median;
 mod fizzbuzz;
 mod error_thing;
