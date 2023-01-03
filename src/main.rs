@@ -17,6 +17,7 @@ pub mod rectangle;
 mod median;
 mod fizzbuzz;
 mod error_thing;
+mod generical;
 
 fn main() {
     stringy_thingy();
@@ -56,6 +57,10 @@ fn main() {
     println!();
 
     get_file();
+    println!();
+
+    let money = last_char_of_first_ln("show me that money, fam");
+    println!("The money is: {}", money.unwrap());
 }
 
 // lame way
