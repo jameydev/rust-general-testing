@@ -1,3 +1,4 @@
+use std::fmt::Display;
 // fn largest<T>(list: &[T]) -> &T {
 //     let mut largest = &list[0];
 //     for item in list {
@@ -51,4 +52,26 @@ pub fn get_to_the_point() {
     println!("integer y = {}", integer.y());
     println!("float x = {}", float.x());
     println!("float y = {}", float.y());
+}
+
+pub struct Pair<T> {
+    x: T,
+    y: T
+}
+
+impl<T> Pair<T> {
+    fn new(x: T, y: T) -> Self {
+        Self { x , y }
+    }
+}
+
+impl<T: Display + PartialOrd> Pair<T> {
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        }
+        else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
 }
