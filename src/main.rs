@@ -1,6 +1,8 @@
+#![allow(unused)]
 extern crate core;
 
 use std::collections::HashMap;
+use std::io;
 
 use error_thing::*;
 use fizzbuzz::*;
@@ -83,9 +85,18 @@ fn current_bs() {
     println!("1 new toot: {}", toot.summarize());
 }
 
+fn user_input() {
+    println!("\nWhat's your name?");
+    let mut name = String::new();
+    io::stdin().read_line(&mut name).expect("Didn't receive input");
+    let greeting = String::from("Nice to meet you");
+    println!("{}, {}!", &greeting, name.trim_end());
+}
+
 fn main() {
     old_crapp();
     current_bs();
+    user_input();
 }
 
 // lame way
