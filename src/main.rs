@@ -9,6 +9,7 @@ use median::*;
 use rectangle::Rectangle;
 use stuff::*;
 use user::User;
+use crate::aggregator::{Summary, Toot};
 use crate::generical::get_to_the_point;
 
 mod garden;
@@ -19,6 +20,7 @@ mod median;
 mod fizzbuzz;
 mod error_thing;
 mod generical;
+mod aggregator;
 
 fn old_crapp() {
     stringy_thingy();
@@ -67,6 +69,18 @@ fn current_bs() {
 
     println!();
     get_to_the_point();
+
+    println!();
+
+    let toot = Toot {
+        username: String::from("jameydev"),
+        mastodon_instance: String::from("hachyderm.io"),
+        content: String::from("I nooted my profile image. NOOT NOOT FOR TOOTS😂"),
+        is_reply: false,
+        is_reblog: false,
+    };
+
+    println!("1 new toot: {}", toot.summarize());
 }
 
 fn main() {
