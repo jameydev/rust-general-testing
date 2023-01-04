@@ -3,7 +3,6 @@ extern crate core;
 
 use std::collections::HashMap;
 use std::io;
-
 use error_thing::*;
 use fizzbuzz::*;
 use garden::vegetables::Asparagus;
@@ -93,10 +92,24 @@ fn user_input() {
     println!("{}, {}!", &greeting, name.trim_end());
 }
 
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+
 fn main() {
     old_crapp();
     current_bs();
     user_input();
+
+    let string1 = String::from("abcd");
+    let string2 = "xyz";
+
+    let result = longest(string1.as_str(), string2);
+    println!("\nThe longest string is {}", result);
 }
 
 // lame way
