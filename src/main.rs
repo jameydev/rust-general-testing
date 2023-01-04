@@ -94,11 +94,7 @@ fn user_input() {
     println!("{}, {}!", &greeting, name.trim_end());
 }
 
-fn main() {
-    old_crapp();
-    current_bs();
-    user_input();
-
+fn its_lifetimes_jim() {
     let string1 = String::from("abcd");
     let string2 = "xyz";
 
@@ -106,6 +102,17 @@ fn main() {
     println!("\nThe longest string is {}", result);
 
     some_text();
+    println!();
+
+    let the_longo = longest_with_an_announcement("ballin", "shot callin", "Yeet!");
+    println!("Longest string = {}", the_longo);
+}
+
+fn main() {
+    old_crapp();
+    current_bs();
+    user_input();
+    its_lifetimes_jim();
 }
 
 // lame way
