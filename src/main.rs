@@ -12,6 +12,7 @@ use stuff::*;
 use user::User;
 use crate::aggregator::{Summary, Toot};
 use crate::generical::get_to_the_point;
+use life::*;
 
 mod garden;
 mod stuff;
@@ -22,6 +23,7 @@ mod fizzbuzz;
 mod error_thing;
 mod generical;
 mod aggregator;
+mod life;
 
 fn old_crapp() {
     stringy_thingy();
@@ -92,14 +94,6 @@ fn user_input() {
     println!("{}, {}!", &greeting, name.trim_end());
 }
 
-fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
-    if x.len() > y.len() {
-        x
-    } else {
-        y
-    }
-}
-
 fn main() {
     old_crapp();
     current_bs();
@@ -110,6 +104,8 @@ fn main() {
 
     let result = longest(string1.as_str(), string2);
     println!("\nThe longest string is {}", result);
+
+    some_text();
 }
 
 // lame way
