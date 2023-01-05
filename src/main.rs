@@ -28,7 +28,7 @@ mod user;
 pub mod general_testing {
     use super::*;
     pub fn old_crapp() {
-        super::stringy_thingy();
+        stringy_thingy();
         println!();
 
         user_thing();
