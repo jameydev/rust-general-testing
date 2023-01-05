@@ -148,6 +148,12 @@ mod tests {
 
         assert!(!smaller.can_contain(&larger));
     }
+
+    #[test]
+    #[should_panic]
+    fn guess_greater_than_100_panics() {
+        Guess::new(200);
+    }
 }
 
 // lame way
