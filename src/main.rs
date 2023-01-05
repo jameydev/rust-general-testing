@@ -115,6 +115,41 @@ fn main() {
     its_lifetimes_jim();
 }
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn lrgr_rect_can_hold_smaller() {
+        let larger = Rectangle {
+            width: 8,
+            height: 7
+        };
+
+        let smaller = Rectangle {
+            width: 5,
+            height: 1
+        };
+
+        assert!(larger.can_contain(&smaller));
+    }
+
+    #[test]
+    fn smaller_rect_cannot_hold_lrger() {
+        let larger = Rectangle {
+            width: 8,
+            height: 7
+        };
+
+        let smaller = Rectangle {
+            width: 5,
+            height: 1
+        };
+
+        assert!(!smaller.can_contain(&larger));
+    }
+}
+
 // lame way
 // fn area(width: u32, height: u32) -> u32 {
 //     width * height
