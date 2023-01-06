@@ -12,6 +12,7 @@ use rectangle::Rectangle;
 use std::collections::HashMap;
 use std::io;
 use stuff::*;
+use tshirt::*;
 use user::User;
 
 mod aggregator;
@@ -23,6 +24,7 @@ mod life;
 mod median;
 mod rectangle;
 mod stuff;
+mod tshirt;
 mod user;
 
 pub mod general_testing {
@@ -112,6 +114,25 @@ pub mod general_testing {
         println!("Longest string = {}", the_longo);
     }
 
+    pub fn tshirt_debuggo() {
+        let store = Inventory {
+            shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue, ShirtColor::Orange, ShirtColor::Green],
+        };
+
+        let user_pref1 = Some(ShirtColor::Red);
+        let giveaway1 = store.giveaway(user_pref1);
+        println!(
+            "The user with preference {:?} gets {:?}",
+            user_pref1, giveaway1
+        );
+
+        let user_pref2 = None;
+        let giveaway2 = store.giveaway(user_pref2);
+        println!(
+            "The user with preference {:?} gets {:?}",
+            user_pref2, giveaway2
+        );
+    }
 }
 
 fn main() {
@@ -120,6 +141,8 @@ fn main() {
     current_bs();
     user_input();
     its_lifetimes_jim();
+    println!();
+    tshirt_debuggo();
 }
 
 #[cfg(test)]
@@ -160,5 +183,39 @@ mod tests {
     #[should_panic]
     fn guess_greater_than_100_panics() {
         Guess::new(200);
+    }
+
+    #[test]
+    fn tee_shirt_color_same_if_stocked() {
+        let store = tshirt::Inventory {
+            shirts: vec![
+                ShirtColor::Blue,
+                ShirtColor::Red,
+                ShirtColor::Orange,
+                ShirtColor::Blue,
+            ],
+        };
+
+        let user_pref = Some(ShirtColor::Red);
+        let give_it_away = store.giveaway(user_pref);
+
+        assert_eq!(give_it_away, ShirtColor::Red);
+    }
+
+    #[test]
+    fn tee_shirt_color_most_if_no_pref() {
+        let store = tshirt::Inventory {
+            shirts: vec![
+                ShirtColor::Blue,
+                ShirtColor::Red,
+                ShirtColor::Green,
+                ShirtColor::Red,
+            ],
+        };
+
+        let user_pref = None;
+        let give_it_away = store.giveaway(user_pref);
+
+        assert_eq!(give_it_away, ShirtColor::Red);
     }
 }
