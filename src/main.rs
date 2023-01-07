@@ -14,6 +14,7 @@ use std::io;
 use stuff::*;
 use tshirt::*;
 use user::User;
+use closed::*;
 
 mod aggregator;
 mod error_thing;
@@ -26,6 +27,7 @@ mod rectangle;
 mod stuff;
 mod tshirt;
 mod user;
+mod closed;
 
 pub mod general_testing {
     use super::*;
@@ -143,6 +145,8 @@ fn main() {
     its_lifetimes_jim();
     println!();
     tshirt_debuggo();
+    println!();
+    closure_examples();
 }
 
 #[cfg(test)]
