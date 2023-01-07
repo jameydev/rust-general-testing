@@ -3,6 +3,7 @@ extern crate core;
 
 use crate::aggregator::{Summary, Toot};
 use crate::generical::get_to_the_point;
+use closed::*;
 use error_thing::*;
 use fizzbuzz::*;
 use garden::vegetables::Asparagus;
@@ -14,9 +15,9 @@ use std::io;
 use stuff::*;
 use tshirt::*;
 use user::User;
-use closed::*;
 
 mod aggregator;
+mod closed;
 mod error_thing;
 mod fizzbuzz;
 mod garden;
@@ -27,7 +28,6 @@ mod rectangle;
 mod stuff;
 mod tshirt;
 mod user;
-mod closed;
 
 pub mod general_testing {
     use super::*;
@@ -118,7 +118,13 @@ pub mod general_testing {
 
     pub fn tshirt_debuggo() {
         let store = Inventory {
-            shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue, ShirtColor::Orange, ShirtColor::Green],
+            shirts: vec![
+                ShirtColor::Blue,
+                ShirtColor::Red,
+                ShirtColor::Blue,
+                ShirtColor::Orange,
+                ShirtColor::Green,
+            ],
         };
 
         let user_pref1 = Some(ShirtColor::Red);
@@ -134,6 +140,18 @@ pub mod general_testing {
             "The user with preference {:?} gets {:?}",
             user_pref2, giveaway2
         );
+    }
+
+    pub mod iterato {
+        #[derive(PartialEq, Debug)]
+        pub struct Shoe {
+            pub size: u32,
+            pub style: String,
+        }
+
+        pub fn shoes_in_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+            shoes.into_iter().filter(|s| s.size == shoe_size).collect()
+        }
     }
 }
 
@@ -152,6 +170,7 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use general_testing::iterato::*;
 
     #[test]
     fn lrgr_rect_can_hold_smaller() {
@@ -221,5 +240,39 @@ mod tests {
         let give_it_away = store.giveaway(user_pref);
 
         assert_eq!(give_it_away, ShirtColor::Red);
+    }
+
+    #[test]
+    fn filters_by_size() {
+        let shoes = vec![
+            Shoe {
+                size: 10,
+                style: String::from("sneaker"),
+            },
+            Shoe {
+                size: 13,
+                style: String::from("sandal"),
+            },
+            Shoe {
+                size: 10,
+                style: String::from("boot"),
+            },
+        ];
+
+        let in_my_size = shoes_in_size(shoes, 10);
+
+        assert_eq!(
+            in_my_size,
+            vec![
+                Shoe {
+                    size: 10,
+                    style: String::from("sneaker")
+                },
+                Shoe {
+                    size: 10,
+                    style: String::from("boot")
+                }
+            ]
+        );
     }
 }
