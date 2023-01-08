@@ -159,39 +159,58 @@ pub mod general_testing {
 
         pub enum List<T> {
             Cons(T, Box<List<T>>),
-            Nil
+            Nil,
         }
-    
+
         pub struct MyBox<T>(T);
-        
+
         impl<T> MyBox<T> {
             pub fn new(x: T) -> MyBox<T> {
                 MyBox(x)
             }
         }
-    
+
         impl<T> Deref for MyBox<T> {
             type Target = T;
-    
+
             fn deref(&self) -> &Self::Target {
                 &self.0
             }
         }
 
+        pub struct CustomSmartPointer {
+            pub data: String,
+        }
+
+        impl Drop for CustomSmartPointer {
+            fn drop(&mut self) {
+                println!("Dropping CustomSmartPointer with data `{}`!", self.data);
+            }
+        }
     }
 
     pub fn very_smart_indeed() {
         let the_list = i_am_very_smart_ptr::List::Cons(
-        22, Box::new(i_am_very_smart_ptr::List::Cons(
-            32, Box::new(i_am_very_smart_ptr::List::Nil)))
+            22,
+            Box::new(i_am_very_smart_ptr::List::Cons(
+                32,
+                Box::new(i_am_very_smart_ptr::List::Nil),
+            )),
         );
 
         let x = 10;
         let y = i_am_very_smart_ptr::MyBox::new(x);
 
-        println!("\n{x} = {}", *y);
-    }
+        println!("\n{x} = {}\n", *y);
 
+        let c = i_am_very_smart_ptr::CustomSmartPointer {
+            data: String::from("my stuff"),
+        };
+        let d = i_am_very_smart_ptr::CustomSmartPointer {
+            data: String::from("other stuff"),
+        };
+        println!("CustomSmartPointers created.");
+    }
 }
 
 fn main() {
