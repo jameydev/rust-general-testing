@@ -8,6 +8,7 @@ use error_thing::*;
 use fizzbuzz::*;
 use garden::vegetables::Asparagus;
 use life::*;
+use limits::tracker;
 use median::*;
 use rectangle::Rectangle;
 use std::collections::HashMap;
@@ -15,7 +16,6 @@ use std::io;
 use stuff::*;
 use tshirt::*;
 use user::User;
-use limits::tracker;
 
 mod aggregator;
 mod closed;
@@ -24,12 +24,12 @@ mod fizzbuzz;
 mod garden;
 mod generical;
 mod life;
+mod limits;
 mod median;
 mod rectangle;
 mod stuff;
 mod tshirt;
 mod user;
-mod limits;
 
 pub mod general_testing {
     use std::rc::Rc;
@@ -232,6 +232,10 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    use std::cell::RefCell;
+
+    use crate::limits::tracker::LimitTracker;
+
     use super::*;
     use general_testing::iterato::*;
 
@@ -337,5 +341,33 @@ mod tests {
                 }
             ]
         );
+    }
+
+    #[test]
+    fn it_sends_an_over_75_percent_warning_msg() {
+        struct MockMessenger {
+            sent_messages: RefCell<Vec<String>>,
+        }
+
+        impl MockMessenger {
+            fn new() -> MockMessenger {
+                MockMessenger {
+                    sent_messages: RefCell::new(vec![]),
+                }
+            }
+        }
+
+        impl tracker::Messenger for MockMessenger {
+            fn send(&self, message: &str) {
+                self.sent_messages.borrow_mut().push(String::from(message));
+            }
+        }
+        
+        let mock_messenger = MockMessenger::new();
+        let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
+
+        limit_tracker.set_value(80);
+
+        assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
     }
 }
