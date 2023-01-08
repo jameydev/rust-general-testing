@@ -6,7 +6,7 @@ pub fn closure_examples() {
 
 fn borrow_clsr() {
     let list = vec![1, 2, 3];
-    println!("Before defining closure: {:?}", list);
+    println!("\nBefore defining closure: {:?}", list);
 
     let only_borrows = || println!("From closure: {:?}", list);
 
@@ -16,6 +16,8 @@ fn borrow_clsr() {
 }
 
 fn mut_clsr() {
+    println!("We are now showing an example of a mutable closure...");
+
     let mut list = vec![1, 2, 3];
     println!("Before defining closure: {:?}", list);
 
