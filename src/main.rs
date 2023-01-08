@@ -15,6 +15,7 @@ use std::io;
 use stuff::*;
 use tshirt::*;
 use user::User;
+use std::ops::Deref;
 
 mod aggregator;
 mod closed;
@@ -158,6 +159,23 @@ pub mod general_testing {
         Cons(T, Box<List<T>>),
         Nil
     }
+
+    pub struct MyBox<T>(T);
+    
+    impl<T> MyBox<T> {
+        pub fn new(x: T) -> MyBox<T> {
+            MyBox(x)
+        }
+    }
+
+    impl<T> Deref for MyBox<T> {
+        type Target = T;
+
+        fn deref(&self) -> &Self::Target {
+            &self.0
+        }
+    }
+
 }
 
 fn main() {
@@ -172,6 +190,11 @@ fn main() {
     closure_examples();
 
     let the_list = List::Cons(22, Box::new(List::Cons(32, Box::new(List::Nil))));
+
+    let x = 10;
+    let y = MyBox::new(x);
+
+    println!("\n{x} = {}", *y);
 }
 
 #[cfg(test)]
