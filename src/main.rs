@@ -153,6 +153,11 @@ pub mod general_testing {
             shoes.into_iter().filter(|s| s.size == shoe_size).collect()
         }
     }
+
+    pub enum List<T> {
+        Cons(T, Box<List<T>>),
+        Nil
+    }
 }
 
 fn main() {
@@ -165,6 +170,8 @@ fn main() {
     tshirt_debuggo();
     println!();
     closure_examples();
+
+    let the_list = List::Cons(22, Box::new(List::Cons(32, Box::new(List::Nil))));
 }
 
 #[cfg(test)]
