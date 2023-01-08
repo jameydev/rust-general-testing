@@ -30,6 +30,8 @@ mod tshirt;
 mod user;
 
 pub mod general_testing {
+    use std::rc::Rc;
+
     use super::*;
     pub fn old_crapp() {
         stringy_thingy();
@@ -155,10 +157,10 @@ pub mod general_testing {
     }
 
     pub mod i_am_very_smart_ptr {
-        use std::ops::Deref;
+        use std::{ops::Deref, rc::Rc};
 
         pub enum List<T> {
-            Cons(T, Box<List<T>>),
+            Cons(T, Rc<List<T>>),
             Nil,
         }
 
@@ -192,9 +194,9 @@ pub mod general_testing {
     pub fn very_smart_indeed() {
         let the_list = i_am_very_smart_ptr::List::Cons(
             22,
-            Box::new(i_am_very_smart_ptr::List::Cons(
+            Rc::new(i_am_very_smart_ptr::List::Cons(
                 32,
-                Box::new(i_am_very_smart_ptr::List::Nil),
+                Rc::new(i_am_very_smart_ptr::List::Nil),
             )),
         );
 
