@@ -156,7 +156,7 @@ pub mod general_testing {
 
     pub mod i_am_very_smart_ptr {
         use std::ops::Deref;
-        
+
         pub enum List<T> {
             Cons(T, Box<List<T>>),
             Nil
@@ -180,6 +180,18 @@ pub mod general_testing {
 
     }
 
+    pub fn very_smart_indeed() {
+        let the_list = i_am_very_smart_ptr::List::Cons(
+        22, Box::new(i_am_very_smart_ptr::List::Cons(
+            32, Box::new(i_am_very_smart_ptr::List::Nil)))
+        );
+
+        let x = 10;
+        let y = i_am_very_smart_ptr::MyBox::new(x);
+
+        println!("\n{x} = {}", *y);
+    }
+
 }
 
 fn main() {
@@ -192,16 +204,7 @@ fn main() {
     tshirt_debuggo();
     println!();
     closure_examples();
-
-    let the_list = i_am_very_smart_ptr::List::Cons(
-        22, Box::new(i_am_very_smart_ptr::List::Cons(
-            32, Box::new(i_am_very_smart_ptr::List::Nil)))
-        );
-
-    let x = 10;
-    let y = i_am_very_smart_ptr::MyBox::new(x);
-
-    println!("\n{x} = {}", *y);
+    very_smart_indeed();
 }
 
 #[cfg(test)]
