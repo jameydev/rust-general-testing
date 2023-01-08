@@ -15,6 +15,7 @@ use std::io;
 use stuff::*;
 use tshirt::*;
 use user::User;
+use limits::tracker;
 
 mod aggregator;
 mod closed;
@@ -28,6 +29,7 @@ mod rectangle;
 mod stuff;
 mod tshirt;
 mod user;
+mod limits;
 
 pub mod general_testing {
     use std::rc::Rc;
