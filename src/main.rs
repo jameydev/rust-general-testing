@@ -15,7 +15,6 @@ use std::io;
 use stuff::*;
 use tshirt::*;
 use user::User;
-use std::ops::Deref;
 
 mod aggregator;
 mod closed;
@@ -155,25 +154,30 @@ pub mod general_testing {
         }
     }
 
-    pub enum List<T> {
-        Cons(T, Box<List<T>>),
-        Nil
-    }
-
-    pub struct MyBox<T>(T);
+    pub mod i_am_very_smart_ptr {
+        use std::ops::Deref;
+        
+        pub enum List<T> {
+            Cons(T, Box<List<T>>),
+            Nil
+        }
     
-    impl<T> MyBox<T> {
-        pub fn new(x: T) -> MyBox<T> {
-            MyBox(x)
+        pub struct MyBox<T>(T);
+        
+        impl<T> MyBox<T> {
+            pub fn new(x: T) -> MyBox<T> {
+                MyBox(x)
+            }
         }
-    }
-
-    impl<T> Deref for MyBox<T> {
-        type Target = T;
-
-        fn deref(&self) -> &Self::Target {
-            &self.0
+    
+        impl<T> Deref for MyBox<T> {
+            type Target = T;
+    
+            fn deref(&self) -> &Self::Target {
+                &self.0
+            }
         }
+
     }
 
 }
@@ -189,10 +193,13 @@ fn main() {
     println!();
     closure_examples();
 
-    let the_list = List::Cons(22, Box::new(List::Cons(32, Box::new(List::Nil))));
+    let the_list = i_am_very_smart_ptr::List::Cons(
+        22, Box::new(i_am_very_smart_ptr::List::Cons(
+            32, Box::new(i_am_very_smart_ptr::List::Nil)))
+        );
 
     let x = 10;
-    let y = MyBox::new(x);
+    let y = i_am_very_smart_ptr::MyBox::new(x);
 
     println!("\n{x} = {}", *y);
 }
