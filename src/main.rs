@@ -238,6 +238,8 @@ fn main() {
     multi_th_demo();
     println!();
     move_vec_ref_demo();
+    println!();
+    channel_demo();
 }
 
 #[cfg(test)]

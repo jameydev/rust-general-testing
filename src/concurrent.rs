@@ -1,5 +1,6 @@
 use std::thread;
 use std::time::Duration;
+use std::sync::mpsc;
 
 pub fn multi_th_demo() {
     let handle = thread::spawn(|| {
@@ -23,4 +24,16 @@ pub fn move_vec_ref_demo() {
     let handle = thread::spawn(move || println!("Here's a vector: {:?}", v));
 
     handle.join().unwrap();
+}
+
+pub fn channel_demo() {
+    let (tx, rx) = mpsc::channel();
+
+    thread::spawn(move || {
+        let val = String::from("hi");
+        tx.send(val).unwrap();
+    });
+
+    let received = rx.recv().unwrap();
+    println!("Got {}", received);
 }
