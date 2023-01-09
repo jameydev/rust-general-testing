@@ -17,6 +17,7 @@ use stuff::*;
 use tshirt::*;
 use user::User;
 use tree::*;
+use concurrent::*;
 
 mod aggregator;
 mod closed;
@@ -32,6 +33,7 @@ mod stuff;
 mod tshirt;
 mod user;
 mod tree;
+mod concurrent;
 
 pub mod general_testing {
     use std::rc::Rc;
@@ -232,6 +234,8 @@ fn main() {
     very_smart_indeed();
     println!();
     tree_demo();
+    println!();
+    multi_th_demo();
 }
 
 #[cfg(test)]
