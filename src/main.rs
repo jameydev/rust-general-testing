@@ -16,6 +16,7 @@ use std::io;
 use stuff::*;
 use tshirt::*;
 use user::User;
+use tree::*;
 
 mod aggregator;
 mod closed;
@@ -30,6 +31,7 @@ mod rectangle;
 mod stuff;
 mod tshirt;
 mod user;
+mod tree;
 
 pub mod general_testing {
     use std::rc::Rc;
@@ -228,6 +230,8 @@ fn main() {
     println!();
     closure_examples();
     very_smart_indeed();
+    println!();
+    tree_demo();
 }
 
 #[cfg(test)]
@@ -362,7 +366,7 @@ mod tests {
                 self.sent_messages.borrow_mut().push(String::from(message));
             }
         }
-        
+
         let mock_messenger = MockMessenger::new();
         let mut limit_tracker = LimitTracker::new(&mock_messenger, 100);
 
