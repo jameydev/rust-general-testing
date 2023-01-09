@@ -236,6 +236,8 @@ fn main() {
     tree_demo();
     println!();
     multi_th_demo();
+    println!();
+    move_vec_ref_demo();
 }
 
 #[cfg(test)]
