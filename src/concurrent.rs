@@ -1,4 +1,3 @@
-
 use std::thread;
 use std::time::Duration;
 
@@ -21,9 +20,7 @@ pub fn multi_th_demo() {
 pub fn move_vec_ref_demo() {
     let v = vec![1, 2, 3];
 
-    let handle = thread::spawn(move || {
-        println!("Here's a vector: {:?}", v)
-    });
+    let handle = thread::spawn(move || println!("Here's a vector: {:?}", v));
 
     handle.join().unwrap();
 }
