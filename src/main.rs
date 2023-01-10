@@ -4,6 +4,7 @@ extern crate core;
 use crate::aggregator::{Summary, Toot};
 use crate::generical::get_to_the_point;
 use closed::*;
+use concurrent::*;
 use error_thing::*;
 use fizzbuzz::*;
 use garden::vegetables::Asparagus;
@@ -14,13 +15,13 @@ use rectangle::Rectangle;
 use std::collections::HashMap;
 use std::io;
 use stuff::*;
+use tree::*;
 use tshirt::*;
 use user::User;
-use tree::*;
-use concurrent::*;
 
 mod aggregator;
 mod closed;
+mod concurrent;
 mod error_thing;
 mod fizzbuzz;
 mod garden;
@@ -30,10 +31,9 @@ mod limits;
 mod median;
 mod rectangle;
 mod stuff;
+mod tree;
 mod tshirt;
 mod user;
-mod tree;
-mod concurrent;
 
 pub mod general_testing {
     use std::rc::Rc;
@@ -70,7 +70,7 @@ pub mod general_testing {
         // Lol, this doesn't work
         // median_tester();
         // println!();
-        mode_tester();
+        mode_tester(); // this is also wrong wtf
         println!();
 
         fizz_buzz(100);
@@ -219,6 +219,19 @@ pub mod general_testing {
         };
         println!("CustomSmartPointers created.");
     }
+
+    pub fn gcd(mut n: u64, mut m: u64) -> u64 {
+        assert!(n != 0 && m != 0);
+        while m != 0 {
+            if m < n {
+                let t = m;
+                m = n;
+                n = t;
+            }
+            m = m % n;
+        }
+        n
+    }
 }
 
 fn main() {
@@ -240,6 +253,8 @@ fn main() {
     move_vec_ref_demo();
     println!();
     channel_demo();
+    println!();
+    println!("GCD of 25 and 10 is {}", gcd(25, 10)); // 5
 }
 
 #[cfg(test)]
